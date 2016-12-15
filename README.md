@@ -4,8 +4,6 @@
 
 #include <Microduino_Motor.h>
 
- 
-
 #if defined(__AVR_ATmega32U4__) ||
 (__AVR_ATmega1284P__) || defined(__AVR_ATmega644P__) ||
 defined(__AVR_ATmega128RFA1__)
@@ -30,8 +28,6 @@ defined(__AVR_ATmega128RFA1__)
 
 #define RECV_PIN 10
 
- 
-
 //遥控器按键编码定义
 
 #define INCREASE 0x1FEF807    //增加+
@@ -42,37 +38,23 @@ defined(__AVR_ATmega128RFA1__)
 
 #define NUM_9 0x1FE906F      //数字9
 
- 
-
 #endif
-
- 
 
  IRrecv irrecv(RECV_PIN);
 
  decode_results results;
 
- 
-
 Motor MotorLeft(motor_pin0A, motor_pin0B);
 
 Motor MotorRight(motor_pin1A, motor_pin1B);
-
- 
 
 #define MAX_THROTTLE 255 //最大油门 100~255
 
 #define MAX_STEERING 200 //最大转向 100~512
 
- 
-
 int16_t leftVal = 0;  //左边电机旋转速度
 
 int16_t rightVal = 0;  //右边电机旋转速度
-
- 
-
- 
 
 void setup() {
 
@@ -97,8 +79,6 @@ MotorRight.Fix(1);
 delay(2000);
 
 }
-
- 
 
 void loop() {
 
@@ -165,10 +145,6 @@ rightVal = -rightVal;
      
 break;
 
-   
-
- 
-
    
 case NUM_9:
 
@@ -192,12 +168,8 @@ rightVal = -rightVal;
      
 break;
 
-   
-
    
 case NUM_4:
-
-     
 
        
 leftVal-=10;    //按4号键，旋转速度减10，最小不超过-255
@@ -228,8 +200,6 @@ default:break;
 irrecv.resume();
 
 }
-
- 
 
  
 MotorLeft.Driver(leftVal);  //驱动电机
